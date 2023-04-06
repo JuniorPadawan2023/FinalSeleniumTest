@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
+from selenium.webdriver.support import expected_conditions as EC
 from main_project.base.base_class import Base
 
 
@@ -87,14 +87,20 @@ class Main_page(Base):
         action = ActionChains(self.driver)
         action.move_by_offset(10, 20)  # 10px to the right, 300px to bottom
         action.perform()
-        self.get_check_filt_1().click()
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_filt_1))
+        )
+        element.click()
         print("check_filt_1 ")
 
     def click_check_filt_2(self):
         action = ActionChains(self.driver)
         action.move_by_offset(10, 20)  # 10px to the right, 20px to bottom
         action.perform()
-        self.get_check_filt_2().click()
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_filt_2))
+        )
+        element.click()
         print("check_filt_2 ")
 
     def click_accept(self):
