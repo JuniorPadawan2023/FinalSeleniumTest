@@ -28,26 +28,29 @@ class Test_1:
         print("start test 1")
 
 
-        mp = Main_page(driver) #main page class
-        cp = Cart_page(driver)
-        cip = Client_info_page(driver)
-        mp.select_filt_1()
-        mp.select_filt_2()
-        mp.select_filt_3()
+        mp = Main_page(driver)   #main page class
+        cp = Cart_page(driver)  #cart page class
+        cip = Client_info_page(driver)  #client info page class
+        mp.select_filt_1()     #click filter 1
+        mp.select_filt_2()     #click filter 2
+        mp.select_filt_3()     #click filter 3
         mp.assertion('https://www.dns-shop.ru/catalog/17a8932c16404e77/personalnye-kompyutery/')
+        time.sleep(2)
+        mp.scroll_down()
         time.sleep(3)
-        mp.select_check_filt_1()
+        mp.select_check_filt_1()    #click check_box_filter 1
         time.sleep(2)
-        mp.select_check_filt_2()
-        mp.select_accept()
+        mp.select_check_filt_2()    #click check_box_filter 2
         time.sleep(2)
-        mp.select_product_1()
+        mp.select_accept()          #accept search
+        time.sleep(10)
+        mp.select_product_1()       #click select product 1
         time.sleep(1)
-        mp.select_product_2()
+        mp.select_product_2()       #click select product 2
         time.sleep(1)
-        mp.select_product_3()
+        mp.select_product_3()       #click select product 3
         time.sleep(1)
-        mp.select_cart()
+        mp.select_cart()            #click cart
         mp.assertion('https://www.dns-shop.ru/cart/')
         cp.product_confirm()
         time.sleep(5)
