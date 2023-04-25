@@ -16,18 +16,19 @@ class Main_page(Base):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-
+    mail = 'test@mail.ru'
+    mail_password = 'qwer1234'
 
     #locators
     filt_1 = '//*[@id="catalog"]/div[1]/div[5]/a/a'
-    filt_2 = '/html/body/div[2]/div[1]/div[2]/a[2]'
-    filt_3 = '/html/body/div[2]/div[1]/div[2]/a[1]'
-    check_filt_1 = '/html/body/div[2]/div/div[2]/div[1]/div/div[3]/div[1]/div[4]/div/div/div[3]/label[3]'
-    check_filt_2 = '/html/body/div[2]/div/div[2]/div[1]/div/div[3]/div[1]/div[4]/div/div/div[3]/label[4]'
-    accept = '/html/body/div[2]/div/div[2]/div[1]/div/div[3]/div[2]/div/button[1]'
-    product_1 = '/html/body/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div[1]/div[4]/button[2]'
-    product_2 = '/html/body/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div[2]/div[4]/button[2]'
-    product_3 = '/html/body/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div[3]/div[4]/button[2]'
+    filt_2 = '//a[@href="/catalog/e33ed1823ba77fd7/kompyutery-i-po/"]'
+    filt_3 = '//a[@class="subcategory__item ui-link ui-link_blue"]'
+    check_filt_1 = '(//label[@class="ui-checkbox ui-checkbox_list"])[3]'
+    check_filt_2 = '(//label[@class="ui-checkbox ui-checkbox_list"])[4]'
+    accept = '//button[@class="button-ui button-ui_brand left-filters__button"]'
+    product_1 = '(//button[@class="buy-btn"])[1]'
+    product_2 = '(//button[@class="buy-btn"])[2]'
+    product_3 = '(//button[@class="buy-btn"])[3]'
 
     cart = '//*[@id="header-search"]/div/div[3]/div[1]/div/a'
 
@@ -45,22 +46,22 @@ class Main_page(Base):
         return self.driver.find_element(By.XPATH, self.filt_3)
 
     def get_check_filt_1(self):
-        return self.driver.find_element(By.XPATH, self.check_filt_1)
+        return self.driver.find_elements(By.XPATH, self.check_filt_1)[2]
 
     def get_check_filt_2(self):
-        return self.driver.find_element(By.XPATH, self.check_filt_2)
+        return self.driver.find_elements(By.XPATH, self.check_filt_2)[3]
 
     def get_accept(self):
         return self.driver.find_element(By.XPATH, self.accept)
 
     def get_product_1(self):
-        return self.driver.find_element(By.XPATH, self.product_1)
+        return self.driver.find_elements(By.CLASS_NAME, "buy-btn")[0]
 
     def get_product_2(self):
-        return self.driver.find_element(By.XPATH, self.product_2)
+        return self.driver.find_elements(By.CLASS_NAME, "buy-btn")[1]
 
     def get_product_3(self):
-        return self.driver.find_element(By.XPATH, self.product_3)
+        return self.driver.find_elements(By.CLASS_NAME, "buy-btn")[2]
 
     def get_cart(self):
         return self.driver.find_element(By.XPATH, self.cart)
