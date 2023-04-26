@@ -16,10 +16,16 @@ class Main_page(Base):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-    mail = 'test@mail.ru'
-    mail_password = 'qwer1234'
+    mail = 'ivan.homyakov2017@yandex.ru'
+    mail_password = 'Password123'
 
     #locators
+    user = '//div[@class="user-profile__login"]'
+    user_button = '//div[@class="user-profile__guest"]/button'
+    enter_with_password = '//div[@class="base-button-container base-button-container_blue"]'
+    mail_locator = '//input[@class="base-ui-input-row__input base-ui-input-row__input_with-icon"]'
+    mail_pass_locator = '//input[@type="password"]'
+    enter_button = '//button[@class="base-ui-button-v2_big base-ui-button-v2_brand base-ui-button-v2_ico-none base-ui-button-v2"]'
     filt_1 = '//*[@id="catalog"]/div[1]/div[5]/a/a'
     filt_2 = '//a[@href="/catalog/e33ed1823ba77fd7/kompyutery-i-po/"]'
     filt_3 = '//a[@class="subcategory__item ui-link ui-link_blue"]'
@@ -35,6 +41,23 @@ class Main_page(Base):
 
 
     #Getters
+    def get_user(self):
+        return self.driver.find_element(By.XPATH, self.user)
+
+    def get_user_button(self):
+        return self.driver.find_element(By.XPATH, self.user_button)
+
+    def get_enter_with_password(self):
+        return self.driver.find_element(By.XPATH, self.enter_with_password)
+
+    def get_mail_locator(self):
+        return self.driver.find_element(By.XPATH, self.mail_locator)
+
+    def get_mail_pass_locator(self):
+        return self.driver.find_element(By.XPATH, self.mail_pass_locator)
+
+    def get_enter_button(self):
+        return self.driver.find_element(By.XPATH, self.enter_button)
 
     def get_filt_1(self):
         return self.driver.find_element(By.XPATH, self.filt_1)
@@ -68,11 +91,39 @@ class Main_page(Base):
 
 
     #Actions
+    def hover_user(self):
+        hover = ActionChains(self.driver).move_to_element(self.get_user())
+        hover.perform()
+        print("hover to user ")
+
+    def click_user_button(self):
+        self.get_user_button().click()
+        print("click user button")
+
+    def click_enter_with_password(self):
+        self.get_enter_with_password().click()
+        print("click user button")
+
+    def mail_locator_send_keys(self):
+        self.get_mail_locator().send_keys('ivan.homyakov2017@yandex.ru')
+        print("send keys to mail")
+
+    def mail_pass_locator_send_keys(self):
+        self.get_mail_pass_locator().send_keys('Password123')
+        print("send keys to mail password")
+
+    def click_enter_button(self):
+        self.get_enter_button().click()
+        print("click enter button")
 
     def click_filt_1(self):
-        self.get_filt_1().click()
-        print("select_filt_1 ")
-
+        try:
+            self.get_filt_1().click()
+            print("select_filt_1 ")
+            WebDriverWait(self.driver, timeout=10)
+        except:
+            self.get_filt_1().click()
+            print("select_filt_1 ")
     def click_filt_2(self):
         self.get_filt_2().click()
         print("select_filt_2 ")

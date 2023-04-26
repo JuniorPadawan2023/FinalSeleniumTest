@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class Test_1: #dns shop buy products test
 
 
-    def test_authorization(set_up, set_group):
+    def test_scenario(set_up, set_group):
         options = Options()
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
         options.add_experimental_option("detach", True)
@@ -32,6 +32,15 @@ class Test_1: #dns shop buy products test
         mp = Main_page(driver)   #main page class
         cp = Cart_page(driver)  #cart page class
         cip = Client_info_page(driver)  #client info page class
+        WebDriverWait(driver, timeout=10)
+        mp.hover_user()     #hover to user profile button
+        mp.click_user_button()
+        mp.click_enter_with_password()
+        mp.mail_locator_send_keys()
+        mp.mail_pass_locator_send_keys()
+        WebDriverWait(driver, timeout=20)
+        mp.click_enter_button()
+        WebDriverWait(driver, timeout=20)
         mp.select_filt_1()     #click filter 1 open computer page
         mp.select_filt_2()     #click filter 2 open components page
         mp.select_filt_3()     #click filter 3 open personal computer
